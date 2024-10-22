@@ -178,34 +178,73 @@ nav
     min-width: 50%;
     z-index: -1; 
     transform: translate(-50%, -50%); 
-    box-sizing: border-box;
-
-   
-   
+    box-sizing: border-box; 
 }
+
 .text-containerbody3 h1
 {
-    color:white;
-text-align: center;
-margin-top: 300px;
+    color: #FFF;
+    font-family: Mulish;
+    text-align: center;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+
+}
+
+.feature-heading {
+    padding-top: 70%;
+    color: #000;
+    font-family: Mulish;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+    padding-left: 3%;
+    width: 300px;
+}
+
+.feature-text {
+    color: #000;
+    text-align: justify;
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-left: 10%;
+    width: 270px;
+    
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.feature-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    height: 468px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
     z-index: 1;
-
-}
-.promo-container
-{
-width: 100%;
-height: 100%;
-position: relative;
-border: 1px solid black;
-margin-left: 100px;
-overflow: hidden;
 }
 
-.promo-image img{
+.feature-icon img {
+    width: 350px; /* Ukuran lebar gambar dikurangi */
+    height: auto; /* Tinggi otomatis mengikuti rasio */
+    margin-top: -25%;
+}
 
-    width:200px;
-    height: 200px;
-    align-items: center;
-
+.features {
+    text-align: center;
 }
 
