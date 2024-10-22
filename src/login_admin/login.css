@@ -1,0 +1,9 @@
+body {
+        background-image: url('../../assets/aboutus/5203555.png');
+        background-size: cover; /* Untuk memastikan gambar memenuhi seluruh halaman */
+        background-repeat: no-repeat; /* Untuk menghindari pengulangan gambar */
+        background-position: center center; /* Menempatkan gambar di tengah */
+      }
+      
+
+
