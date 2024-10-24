@@ -3,12 +3,12 @@ use sampaikilat_account;
 
 create table staff
 (
-    id_staff char(8),
-    nama_staff varchar(50),
-    alamat_jalan_staff varchar(30),
-    alamat_kecamatan_staff varchar(30),
-    alamat_kota_staff varchar(30),
-    gaji_bulanan float,
+    id_staff char(8) not null,
+    nama_staff varchar(50) not null,
+    alamat_jalan_staff varchar(30) not null,
+    alamat_kecamatan_staff varchar(30) not null,
+    alamat_kota_staff varchar(30) not null,
+    gaji_bulanan float not null,
     primary key (id_staff),
     CONSTRAINT staff_id_format CHECK (id_staff REGEXP '^SF-[0-9]{5}+$')
 
@@ -16,18 +16,18 @@ create table staff
 
 create table role_akun
 (
-    id_role char(6),
-    nama_role char(5),
+    id_role char(6) not null,
+    nama_role char(5) not null,
     primary key (id_role),
     CONSTRAINT role_id_format check (id_role REGEXP '^RL-[0-9]{3}+$')
 );
 
 create table akun_staff
 (
-    id_staff char(8),
-    username_staff varchar(30),
-    password_staff char(32),
-    id_role char(6),
+    id_staff char(8) not null,
+    username_staff varchar(30) not null,
+    password_staff char(32) not null,
+    id_role char(6) not null,
     foreign key (id_staff) references staff (id_staff) on update cascade on delete cascade,
     foreign key (id_role) references role_akun (id_role) on update cascade on delete cascade
 );
