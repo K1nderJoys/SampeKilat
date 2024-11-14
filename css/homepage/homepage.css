@@ -9,7 +9,6 @@ nav
 
 }
 .logo-item img{
-
     width: 75px;
     height: 50px;
     display: flex;
@@ -24,8 +23,6 @@ nav
     padding: 5px;
     flex-wrap: wrap;
     margin-right: 500px;
-
-
 
 }
 .logo-item span{
@@ -73,7 +70,7 @@ nav
     color: white; 
     text-align: center; 
     padding: 20px;
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 100px;
     margin-right: 630px;
     font-size: 20px;
@@ -107,7 +104,7 @@ nav
     margin-top: 95px;
     text-align: center;
     color: white;
-    background: url(../../assets/homepage/file-document-icon-and-magnifier-file-search-iflat-color-con-vector-removebg-preview.png) no-repeat 77px center;
+    background: url(/assets/homepage/file-document-icon-and-magnifier-file-search-iflat-color-con-vector-removebg-preview.png) no-repeat 77px center;
     background-size: contain;
     background-color: #8E8E8E;
     opacity: 0.5;
@@ -283,3 +280,129 @@ nav
     display: table;
     clear: both;
   }
+
+.global-shipping-section {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8f8f8;
+}
+
+.global-shipping-content {
+    display: flex;
+    width: 945px;
+    gap: 20px;
+}
+
+.shipping-image {
+    width: 45%;
+    height: auto;
+}
+
+.shipping-text {
+    width: 55%;
+}
+
+.shipping-text h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #f8f8f8;
+    color: #000000;
+    padding: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 945px;
+    margin: 0 auto;
+}
+
+.footer-logo h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    margin: 5px 0;
+}
+
+.footer-links div {
+    margin-right: 20px;
+}
+
+.footer-links h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.footer-links p {
+    margin: 5px 0;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.footer-links a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+.footer-links a:hover,
+.footer-links a:visited,
+.footer-links a:active {
+    color: #000000;
+    text-decoration: none;
+}
+.icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.icon, .social-icon {
+    font-size: 16px;
+    color: black;
+}
+
+.footer-logo {
+    text-align: left;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lightning-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.footer-logo h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.icon2 {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
