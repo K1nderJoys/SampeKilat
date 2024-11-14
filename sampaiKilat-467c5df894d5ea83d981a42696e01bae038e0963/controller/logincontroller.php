@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 
 include './koneksiDB.php'; 
 
@@ -21,14 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result=$stmt->get_result();
     
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc(); // Mengambil data user dari hasil query
+        $row = $result->fetch_assoc(); 
 
-        // Menyimpan data penting ke dalam session
-        $_SESSION['username'] = $row['username']; // Simpan username ke session
-        $_SESSION['session_id'] = session_id(); // Simpan session 
-        
        
+        $_SESSION['username'] = $row['username']; 
+        $_SESSION['session_id'] = session_id();
+        $_SESSION['csrf_token']=bin2hex(random_bytes(32));
+        setcookie("csrf_token", $_SESSION['csrf_token'], [
+            'expires' => time() + 10800,   
+            'path' => '/',
+            'secure' => true,              
+            'httponly' => true,            
+            'samesite' => 'Strict'         
+        ]);
         header("Location: ../homepage.html");
+        
         exit(); 
     } else {
         
@@ -39,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        
     }
 
-} else {
+} 
+else {
     // Jika session belum ada, buat session id baru untuk user
     if (!isset($_SESSION['session_id'])) {
         $_SESSION['session_id'] = session_id();
