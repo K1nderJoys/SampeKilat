@@ -1,3 +1,70 @@
+<?php
+require '../../controller/login/koneksiDB2.php'; // Pastikan file ini berisi koneksi ke database
+
+// Pastikan nomor resi dikirim melalui metode POST atau GET
+if (isset($_POST['nomor_resi'])) {
+    $nomor_resi = $_POST['nomor_resi']; // Input nomor resi
+
+    // Query dengan Prepared Statement
+    $query = "
+        SELECT Distinct r.nomor_resi, 
+               p.nama_pelanggan, 
+               r.nama_penerima,
+
+               CONCAT('Jl. ', alamat_jalan_penerima, ', ', nomor_rumah_penerima, ', ', alamat_kecamatan_penerima, ', ', alamat_kota_penerima) AS alamat_lengkap, 
+               t.tanggal_jam_pengiriman, 
+               pp.posisi_terakhir 
+        FROM resi r 
+        JOIN pelanggan p ON p.id_pelanggan = r.id_pelanggan 
+        JOIN transit t ON r.nomor_resi = t.nomor_resi 
+        JOIN posisi_paket pp ON t.id_posisi_terakhir_paket = pp.id_posisi_terakhir_paket 
+        WHERE r.nomor_resi = ? 
+        ORDER BY t.tanggal_jam_pengiriman DESC
+    ";
+
+    // Siapkan Prepared Statement
+    $stmt = $conn2->prepare($query);
+    if (!$stmt) {
+        die("Kesalahan dalam persiapan statement: " . $conn->error);
+    }
+
+    // Bind parameter (string untuk nomor resi)
+    $stmt->bind_param("s", $nomor_resi);
+
+    // Eksekusi query
+    $stmt->execute();
+
+    $row=null;
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $trackingData[] = [
+                'status_date' => $row['tanggal_jam_pengiriman'],
+                'status_description' => $row['posisi_terakhir'],
+               
+            ];
+        }
+        $result->data_seek(0);
+        
+        $row=$result->fetch_assoc();
+       
+        
+    } else {
+        echo "Tidak ada data ditemukan untuk nomor resi tersebut.";
+    }
+   
+
+    // Tutup statement
+
+} 
+else {
+    echo "Nomor resi tidak diberikan.";
+}
+
+// Tutup koneksi
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +89,7 @@
     </header>
 
     <!-- Main Container -->
+     
     <div class="container">
         <h1>Cek Resi</h1>
         <div class="nav-buttons">
@@ -31,7 +99,10 @@
         </div>
         <div class="input-section">
             <label for="resi-number"><b>Masukkan Nomor Resi</b></label>
-            <input type="text" id="resi-number" placeholder="Lacak hingga 20 nomor resi">
+            <form action="cekresi.php" method="post"> <input type="text" id="resi-number" name="nomor_resi"  placeholder="Lacak hingga 20 nomor resi">
+        
+        </form>
+           
             <small>Jika lebih dari satu resi, gunakan koma</small>
         </div>
         <div>
@@ -44,28 +115,26 @@
         <div class="modal-content">
             <span class="close-btn">&larr; Back</span>
             <div class="resi-info">
-                <p>Nomor Resi : <span>Nomor Resi</span></p>
-                <p>Nama Pengirim : <span>Nama Pengirim</span></p>
-                <p>Nama Penerima : <span>Nama Penerima</span></p>
-                <p>Alamat Penerima : <span>Alamat Penerima</span></p>
+                <p>Nomor Resi : <span><?php echo $row['nomor_resi'];?></span></p>
+                <p>Nama Pengirim : <span><?php echo $row['nama_pelanggan'];?></span></span></p>
+                <p>Nama Penerima : <span><?php echo $row['nama_penerima'];?></span></p>
+                <p>Alamat Penerima : <span><?php echo $row['alamat_lengkap'];?></span></p>
             </div>
             <hr>
             <div class="tracking-status">
-                <div class="status-item">
-                    <div class="status-date">12 - 3 - 2024</div>
-                    <div class="status-info">
-                        <div class="status-icon checked"></div>
-                        <p>Paket Telah di DropOff di Kedai Terdekat</p>
-                    </div>
-                </div>
-                <div class="status-item">
-                    <div class="status-date">12 - 3 - 2024</div>
-                    <div class="status-info">
-                        <div class="status-icon"></div>
-                        <p>Paket sedang dalam perjalanan ke pusat distribusi.</p>
-                    </div>
-                </div>
+    <?php foreach ($trackingData as $trackingItem): ?>
+        <div class="status-item">
+            <div class="status-date">
+                <?php echo htmlspecialchars($trackingItem['status_date']); ?>
             </div>
+            <div class="status-info">
+                <div class="status-icon"></div>
+                <p><?php echo htmlspecialchars($trackingItem['status_description']); ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
         </div>
     </div>
 

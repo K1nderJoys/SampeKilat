@@ -18,12 +18,18 @@ $username=$_SESSION['username'];
       <div class="profile-picture"><img src="../../assets/homepagestaff/image/UserIcon.png" alt=""></div>
       <p class="username"><?php echo htmlspecialchars($_SESSION['role']); ?></p>
     </div>
+    
+    <ul class="menu">
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#mendaftarkanPelanggan">Mendaftarkan Pelanggan</a></li>
+    </ul>
+  
     <button class="logout-button">
       <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="">
       <span>LogOut</span>
     </button>
   </div>
-
+  
   <div class="content">
     <table>
       <thead>
@@ -47,7 +53,7 @@ $username=$_SESSION['username'];
     </table>
     <div class="buttons">
       <!-- Tombol Create langsung mengarah ke Create1.html -->
-      <button class="create" onclick="window.location.href='../createDelivery/Create1.php'">Create</button>
+      <button class="create" onclick="window.location.href='../createDelivery/Create1.html'">Create</button>
       <button class="update" onclick="window.location.href='../updatingDelivery/Update1.html'">Update</button>
       <button class="delete" onclick="showDeletePopup()">Delete</button>
     </div>
