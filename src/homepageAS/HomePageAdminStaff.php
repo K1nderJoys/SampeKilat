@@ -1,3 +1,9 @@
+<?php
+require '../../controller/login/logincontroller.php';
+$username=$_SESSION['username'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,7 @@
   <div class="sidebar">
     <div class="profile">
       <div class="profile-picture"><img src="../../assets/homepagestaff/image/UserIcon.png" alt=""></div>
-      <p class="username">UserName</p>
+      <p class="username"><?php echo htmlspecialchars($_SESSION['role']); ?></p>
     </div>
     <button class="logout-button">
       <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="">
@@ -41,7 +47,7 @@
     </table>
     <div class="buttons">
       <!-- Tombol Create langsung mengarah ke Create1.html -->
-      <button class="create" onclick="window.location.href='../createDelivery/Create1.html'">Create</button>
+      <button class="create" onclick="window.location.href='../createDelivery/Create1.php'">Create</button>
       <button class="update" onclick="window.location.href='../updatingDelivery/Update1.html'">Update</button>
       <button class="delete" onclick="showDeletePopup()">Delete</button>
     </div>

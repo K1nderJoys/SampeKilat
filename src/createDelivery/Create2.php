@@ -1,3 +1,7 @@
+<?php
+require '../../controller/login/logincontroller.php';
+$username=$_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
       <div class="profile-picture">
         <img src="../../assets/homepagestaff/image/UserIcon.png" alt="Profile Picture">
       </div>
-      <p class="username">UserName</p>
+      <p class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
     </div>
     <button class="logout-button">
       <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="Logout Icon">
@@ -23,15 +27,15 @@
   <div class="content">
     <div class="form-container">
       <h2>INPUT PENGIRIMAN</h2>
-      <form action="Create3.html" method="GET">
+      <form action="../../controller/login/createcontroller2.php" method="post">
         <label for="penerima">Nama Penerima</label>
-        <input type="text" id="penerima" placeholder="Masukkan Nama Penerima" required>
+        <input type="text" id="penerima" name="nama_penerima" placeholder="Masukkan Nama Penerima" required>
     
-        <label for="telp">Nomor Telepon</label>
-        <input type="text" id="telp" placeholder="Masukkan Nomor Telepon" required>
+        <label for="telp">Nomor Telepon Penerima</label>
+        <input type="text" id="telp" name="no_penerima" placeholder="Masukkan Nomor Telepon" required>
     
         <label for="alamat">Alamat Penerima</label>
-        <input type="text" id="alamat" placeholder="Masukkan Alamat Penerima" required>
+        <input type="text" id="alamat" name="alamat_penerima" placeholder="Masukkan Alamat Penerima" required>
     
         <div class="form-buttons">
             <button type="submit" class="create-button">Next</button>
