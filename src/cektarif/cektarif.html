@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules Page</title>
+    <link rel="stylesheet" href="../../css/cektarif/cektarif.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt="Logo">
+            <span>SampaiKilat</span>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#cek-resi">Cek Resi</a>
+            <a href="#about">About Us</a>
+            <a href="#help">Help</a>
+        </nav>
+    </header>
+
+<!-- Cek Tarif Section -->
+<div class="container">
+    <h1>Cek Resi</h1>
+    <div class="nav-buttons">
+        <button><b>Cek Resi</b></button>
+        <button class="btn-gray"><b>Cek Tarif</b></button>
+        <button><b>Cek Lokasi</b></button>
+    </div>
+    <form class="form-tarif">
+        <div class="input-group">
+            <label for="weight">Pengirim</label>
+            <div class="input-wrapper">
+                <input type="text" id="weight" placeholder="Alamat Pengirim">
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="weight">Tujuan</label>
+            <div class="input-wrapper">
+                <input type="text" id="weight" placeholder="Alamat Penerima">
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="weight">Berat</label>
+            <div class="input-wrapper">
+                <input type="text" id="weight" placeholder="Berat Barang">
+                <span class="unit">Kg</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="length">Panjang</label>
+            <div class="input-wrapper">
+                <input type="text" id="length" placeholder="Panjang">
+                <span class="unit">Cm</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="width">Lebar</label>
+            <div class="input-wrapper">
+                <input type="text" id="width" placeholder="Lebar">
+                <span class="unit">Cm</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="height">Tinggi</label>
+            <div class="input-wrapper">
+                <input type="text" id="height" placeholder="Tinggi">
+                <span class="unit">Cm</span>
+            </div>
+        </div>
+        <button class="button-check">Cek Tarif</button>
+    </form>
+</div>
+    
+    <!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <div class="footer-logo-container">
+                <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt="Logo" class="footer-logo">
+                <p><b>SampaiKilat</b></p>
+            </div>
+            <p><b>CUSTOMER SERVICE</b></p>
+            <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
+            <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png" alt=""> sampai@kilat.co.id</p>
+            <div class="social-media">
+                <img src="../../assets/homepage/image/Twitter-new-cross-mark-Icon-PNG-X-removebg-preview.png" alt="Facebook">
+                <img src="../../assets/homepage/image/59439.png" alt="Instagram">
+                <img src="../../assets/homepage/image/images-removebg-preview.png" alt="Twitter">
+                <img src="../../assets/homepage/image/png-transparent-instagram-vector-brand-logos-icon-removebg-preview.png" alt="Instagram">
+            </div>
+        </div>
+        <div class="footer-section">
+            <p><b>PERUSAHAAN</b></p>
+            <p>Profil Perusahaan</p>
+            <p>Bantuan</p>
+        </div>
+        <div class="footer-section">
+            <p><b>LAYANAN</b></p>
+            <p>Lacak Pengiriman</p>
+            <p>Cek Tarif</p>
+            <p>Lokasi</p>
+        </div>
+        <div class="footer-section">
+            <p><b>Peraturan</b></p>
+            <p>Larangan Pengiriman</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Popup for Tarif Information -->
+<div id="tarifPopup" class="popup">
+    <div class="popup-content">
+        <button class="close-btn" onclick="closePopup()">&#x2190;</button>
+        <table>
+            <tr>
+                <th>Layanan</th>
+                <th>Deskripsi</th>
+                <th>Tarif</th>
+                <th>Estimasi</th>
+            </tr>
+            <tr>
+                <td><img src="../../assets/cektarif/sds.png" alt="SDS Logo"></td>
+                <td>Same Day Service</td>
+                <td>Rp 10.000</td>
+                <td>Tiba di hari yang sama</td>
+            </tr>
+            <tr>
+                <td><img src="../../assets/cektarif/ons.png" alt="ONS Logo"></td>
+                <td>OverNight Service</td>
+                <td>Rp 10.000</td>
+                <td>1 hari sampai</td>
+            </tr>
+            <tr>
+                <td><img src="../../assets/cektarif/reg.png" alt="RGS Logo"></td>
+                <td>Regular Service</td>
+                <td>Rp 10.000</td>
+                <td>2 hari sampai</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Function to open the popup
+function openPopup() {
+    document.getElementById("tarifPopup").style.display = "flex";
+}
+
+// Function to close the popup
+function closePopup() {
+    document.getElementById("tarifPopup").style.display = "none";
+}
+
+// Attach the function to the "Cek Tarif" button
+document.querySelector(".button-check").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent form submission
+    openPopup();
+});
+
+</script>
+
+</body>
+</html>

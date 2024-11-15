@@ -1,0 +1,204 @@
+/* Reset dan styling dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  position: fixed;
+}
+
+/* Profil User */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.profile-picture img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #333;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-size: 18px;
+  color: #333;
+  margin-top: 5px;
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  width: 150%;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.logout-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Content styling */
+.content {
+  margin-left: 20%;
+  padding: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #ccc;
+  color: #333;
+}
+
+/* Button container */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+/* Styling tombol */
+.buttons button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tombol Create */
+.create {
+  background-color: blue;
+  margin-left: 70px;
+}
+
+.create:hover {
+  background-color: darkblue;
+  transform: scale(1.05);
+}
+
+/* Tombol Update */
+.update {
+  background-color: #1976d2;
+  margin-right: 400px;
+}
+
+.update:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+/* Tombol Delete */
+.delete {
+  background-color: #d32f2f;
+  margin-right: 70px;
+}
+
+.delete:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+/* Popup Container */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Tombol dalam popup */
+.popup-delete, .popup-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.popup-delete {
+  background-color: #d32f2f;
+}
+
+.popup-delete:hover {
+  background-color: #b71c1c;
+}
+
+.popup-cancel {
+  background-color: #1976d2;
+}
+
+.popup-cancel:hover {
+  background-color: #1565c0;
+}

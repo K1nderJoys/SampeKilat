@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Resi</title>
+    <link rel="stylesheet" href="../../css/cekresi/cekresi.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt="Logo">
+            <span>SampaiKilat</span>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#cek-resi">Cek Resi</a>
+            <a href="#about">About Us</a>
+            <a href="#help">Help</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Cek Resi</h1>
+        <div class="nav-buttons">
+            <button class="btn-gray"><b>Cek Resi</b></button>
+            <button><b>Cek Tarif</b></button>
+            <button><b>Cek Lokasi</b></button>
+        </div>
+        <div class="input-section">
+            <label for="resi-number"><b>Masukkan Nomor Resi</b></label>
+            <input type="text" id="resi-number" placeholder="Lacak hingga 20 nomor resi">
+            <small>Jika lebih dari satu resi, gunakan koma</small>
+        </div>
+        <div>
+            <button class="track-btn"><b>Lacak Resi</b></button>
+        </div>
+    </div>
+
+    <!-- Modal for Tracking Details -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&larr; Back</span>
+            <div class="resi-info">
+                <p>Nomor Resi : <span>Nomor Resi</span></p>
+                <p>Nama Pengirim : <span>Nama Pengirim</span></p>
+                <p>Nama Penerima : <span>Nama Penerima</span></p>
+                <p>Alamat Penerima : <span>Alamat Penerima</span></p>
+            </div>
+            <hr>
+            <div class="tracking-status">
+                <div class="status-item">
+                    <div class="status-date">12 - 3 - 2024</div>
+                    <div class="status-info">
+                        <div class="status-icon checked"></div>
+                        <p>Paket Telah di DropOff di Kedai Terdekat</p>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-date">12 - 3 - 2024</div>
+                    <div class="status-info">
+                        <div class="status-icon"></div>
+                        <p>Paket sedang dalam perjalanan ke pusat distribusi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo-container">
+                    <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt="Logo" class="footer-logo">
+                    <p><b>SampaiKilat</b></p>
+                </div>
+                <p>CUSTOMER SERVICE</p>
+                <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
+                <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png" alt=""> sampai@kilat.co.id</p>
+                <div class="social-media">
+                    <img src="../../assets/homepage/image/Twitter-new-cross-mark-Icon-PNG-X-removebg-preview.png" alt="Facebook">
+                    <img src="../../assets/homepage/image/59439.png" alt="Instagram">
+                    <img src="../../assets/homepage/image/images-removebg-preview.png" alt="Twitter">
+                    <img src="../../assets/homepage/image/png-transparent-instagram-vector-brand-logos-icon-removebg-preview.png" alt="Instagram">
+                </div>
+            </div>
+            <div class="footer-section">
+                <p><b>PERUSAHAAN</b></p>
+                <p>Profil Perusahaan</p>
+                <p>Bantuan</p>
+            </div>
+            <div class="footer-section">
+                <p><b>LAYANAN</b></p>
+                <p>Lacak Pengiriman</p>
+                <p>Cek Tarif</p>
+                <p>Lokasi</p>
+            </div>
+            <div class="footer-section">
+                <p><b>Peraturan</b></p>
+                <p>Larangan Pengiriman</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get the modal element
+        const modal = document.getElementById("trackingModal");
+    
+        // Get the "Cek Resi" button
+        const trackButton = document.querySelector(".track-btn");
+    
+        // Get the close button inside the modal
+        const closeBtn = document.querySelector(".close-btn");
+    
+        // Show the modal when the "Cek Resi" button is clicked
+        trackButton.onclick = function () {
+            modal.style.display = "block";
+        };
+    
+        // Hide the modal when the close button is clicked
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+    
+        // Hide the modal when clicking outside the modal content
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+    
+</body>
+</html>
