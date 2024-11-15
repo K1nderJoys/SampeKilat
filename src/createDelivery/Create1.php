@@ -1,6 +1,7 @@
 <?php
 require '../../controller/login/logincontroller.php';
 $username=$_SESSION['username'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

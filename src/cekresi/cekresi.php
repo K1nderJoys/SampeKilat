@@ -1,11 +1,11 @@
 <?php
-require '../../controller/login/koneksiDB2.php'; // Pastikan file ini berisi koneksi ke database
+require '../../controller/login/koneksiDB2.php'; 
 
-// Pastikan nomor resi dikirim melalui metode POST atau GET
+
 if (isset($_POST['nomor_resi'])) {
-    $nomor_resi = $_POST['nomor_resi']; // Input nomor resi
+    $nomor_resi = $_POST['nomor_resi']; 
 
-    // Query dengan Prepared Statement
+    
     $query = "
         SELECT Distinct r.nomor_resi, 
                p.nama_pelanggan, 
@@ -22,16 +22,15 @@ if (isset($_POST['nomor_resi'])) {
         ORDER BY t.tanggal_jam_pengiriman DESC
     ";
 
-    // Siapkan Prepared Statement
+    
     $stmt = $conn2->prepare($query);
     if (!$stmt) {
         die("Kesalahan dalam persiapan statement: " . $conn->error);
     }
 
-    // Bind parameter (string untuk nomor resi)
+    
     $stmt->bind_param("s", $nomor_resi);
 
-    // Eksekusi query
     $stmt->execute();
 
     $row=null;
@@ -61,7 +60,7 @@ else {
     echo "Nomor resi tidak diberikan.";
 }
 
-// Tutup koneksi
+
 
 ?>
 
@@ -74,7 +73,7 @@ else {
     <link rel="stylesheet" href="../../css/cekresi/cekresi.css">
 </head>
 <body>
-    <!-- Header -->
+    
     <header>
         <div class="logo">
             <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt="Logo">
@@ -88,7 +87,7 @@ else {
         </nav>
     </header>
 
-    <!-- Main Container -->
+   
      
     <div class="container">
         <h1>Cek Resi</h1>
@@ -110,7 +109,6 @@ else {
         </div>
     </div>
 
-    <!-- Modal for Tracking Details -->
     <div id="trackingModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&larr; Back</span>
@@ -138,7 +136,7 @@ else {
         </div>
     </div>
 
-    <!-- Footer -->
+
     <footer>
         <div class="footer-container">
             <div class="footer-section">
