@@ -1,8 +1,6 @@
 <?php
 require '../../controller/login/koneksiDB2.php'; 
 
-if($_SERVER ['REQUEST_METHOD']=='post')
-{
     if (isset($_POST['nomor_resi'])) {
         $nomor_resi = $_POST['nomor_resi']; 
     
@@ -63,7 +61,7 @@ if($_SERVER ['REQUEST_METHOD']=='post')
     
     
 
-}
+
 
 
 ?>
