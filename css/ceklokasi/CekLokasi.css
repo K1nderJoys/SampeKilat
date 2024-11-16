@@ -201,3 +201,23 @@ input[type="text"] {
 .footer-info strong {
     font-size: 1.1em;
 }
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    color: darkgray;
+}
+
+a:active {
+    color: darkgray;
+}
+a:focus {
+    outline: none;
+}
