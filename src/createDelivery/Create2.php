@@ -30,13 +30,32 @@ $username=$_SESSION['username'];
       <form action="../../controller/login/createcontroller2.php" method="post">
         <label for="penerima">Nama Penerima</label>
         <input type="text" id="penerima" name="nama_penerima" placeholder="Masukkan Nama Penerima" required>
+
+        <label for="penerima">ID Pelanggan</label>
+        <input type="text" id="penerima" name="ID_Pelanggan" placeholder="Masukkan Nama Penerima" required>
     
         <label for="telp">Nomor Telepon Penerima</label>
         <input type="text" id="telp" name="no_penerima" placeholder="Masukkan Nomor Telepon" required>
     
         <label for="alamat">Alamat Penerima</label>
         <input type="text" id="alamat" name="alamat_penerima" placeholder="Masukkan Alamat Penerima" required>
-    
+
+        <label for="alamat">No Rumah</label>
+        <input type="text" id="alamat" name="no_rumah" placeholder="Masukkan Alamat Penerima" required>
+        
+        <label for="alamat">Alamat Kota</label>
+        <input type="text" id="alamat" name="alamat_kota" placeholder="Masukkan Alamat Penerima" required>
+
+        <label for="alamat">Alamat Kecamatan</label>
+        <input type="text" id="alamat" name="alamat_kecamatan" placeholder="Masukkan Alamat Penerima" required>
+
+        <label for="alamat">Tanggal Pengiriman</label>
+        <input type="text" id="alamat" name="tanggal_pengiriman" placeholder="Masukkan Alamat Penerima" required>
+
+        <label for="alamat">ID Servis</label>
+        <input type="text" id="alamat" name="ID_Servis" placeholder="Masukkan Alamat Penerima" required>
+
+
         <div class="form-buttons">
             <button type="submit" class="create-button">Next</button>
             <button type="reset" class="cancel-button" onclick="return confirm('Apakah Anda yakin ingin membatalkan?')">Cancel</button>

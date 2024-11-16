@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['session_id']) || $_SESSIO
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['id_pengirim'])&&isset($_POST['nama_pengirim'])&&isset($_POST['nomor_telepon'])&&isset($_POST['alamat_pengirim']))
     {
-        $id_pengirim = htmlspecialchars($_POST['id_pengirim']);
+    $id_pengirim = htmlspecialchars($_POST['id_pengirim']);
     $nama_pengirim = htmlspecialchars($_POST['nama_pengirim']);
     $nomor_telepon = htmlspecialchars($_POST['nomor_telepon']);
     $alamat_pengirim = htmlspecialchars($_POST['alamat_pengirim']);
