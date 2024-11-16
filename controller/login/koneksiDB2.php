@@ -10,7 +10,7 @@ $conn2=new mysqli($hostname,$username,$password,$database);
 if ($conn2->connect_error) {
     die("Connection failed: " . $conn2->connect_error);
 } else {
-    echo "Connected successfully";
+    // echo "Connected successfully";
 }
 ?>
 
