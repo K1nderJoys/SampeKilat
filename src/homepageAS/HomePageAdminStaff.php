@@ -14,10 +14,10 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['session_id']) || $_SESSIO
 $sql = "
     SELECT 
         transit.nomor_resi,
-        isi_paket.desk_isi_paket AS id_isi_paket,
-        supir.nama_supir AS plat_nomor_kendaraan,
-        transit.tanggal_jam_pengiriman,
-        posisi_paket.posisi_terakhir AS id_posisi_terakhir_paket
+        isi_paket.desk_isi_paket AS nama_barang,
+        supir.nama_supir AS kurir,
+        transit.tanggal_jam_pengiriman AS waktu_pengiriman,
+        posisi_paket.posisi_terakhir AS lokasi_terakhir
     FROM 
         transit
     JOIN 
@@ -29,6 +29,7 @@ $sql = "
     ORDER BY 
         transit.tanggal_jam_pengiriman DESC
 ";
+
 $result = $conn2->query($sql);
 
 $data = [];
@@ -38,9 +39,10 @@ if ($result->num_rows > 0) {
         $data[] = [
             'Count' => $count,
             'No_Resi' => $row['nomor_resi'],
-            'Status' => $row['id_posisi_terakhir_paket'],
-            'Kurir' => $row['plat_nomor_kendaraan'],
-            'Staff' => $row['nomor_resi'],
+            'Nama_Barang' => $row['nama_barang'],
+            'Kurir' => $row['kurir'],
+            'Waktu_Pengiriman' => $row['waktu_pengiriman'],
+            'Lokasi_Terakhir' => $row['lokasi_terakhir'],
         ];
         $count++;
     }
@@ -62,7 +64,7 @@ if ($result->num_rows > 0) {
     </div>
     <ul class="menu">
       <li><a href="#dashboard">Dashboard</a></li>
-      <li><a href="#mendaftarkanPelanggan">Mendaftarkan Pelanggan</a></li>
+      <li><a href="/src/mendaftarPelanggan/pelanggan.html">Mendaftarkan Pelanggan</a></li>
     </ul>
     <button class="logout-button">
       <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="">
@@ -70,28 +72,31 @@ if ($result->num_rows > 0) {
     </button>
   </div>
   <div class="content">
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>No Resi</th>
-          <th>Status</th>
-          <th>Kurir</th>
-          <th>Staff</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($data as $datas): ?>
-        <tr>
-          <td><?php echo $datas['Count']; ?></td>
-          <td><?php echo $datas['No_Resi']; ?></td>
-          <td><?php echo $datas['Status']; ?></td>
-          <td><?php echo $datas['Kurir']; ?></td>
-          <td><?php echo $datas['Staff']; ?></td>
-        </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+  <table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>No Resi</th>
+      <th>Nama Barang</th>
+      <th>Kurir</th>
+      <th>Tanggal & Jam Pengiriman</th>
+      <th>Lokasi Terakhir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($data as $datas): ?>
+    <tr>
+      <td><?php echo $datas['Count']; ?></td>
+      <td><?php echo $datas['No_Resi']; ?></td>
+      <td><?php echo $datas['Nama_Barang']; ?></td>
+      <td><?php echo $datas['Kurir']; ?></td>
+      <td><?php echo $datas['Waktu_Pengiriman']; ?></td>
+      <td><?php echo $datas['Lokasi_Terakhir']; ?></td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+
     <div class="buttons">
       <button class="create" onclick="window.location.href='../createDelivery/Create1.php'">Create</button>
       <button class="update" onclick="window.location.href='../updatingDelivery/Update1.html'">Update</button>
