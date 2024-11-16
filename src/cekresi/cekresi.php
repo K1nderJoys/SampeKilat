@@ -1,65 +1,69 @@
 <?php
 require '../../controller/login/koneksiDB2.php'; 
 
-
-if (isset($_POST['nomor_resi'])) {
-    $nomor_resi = $_POST['nomor_resi']; 
-
+if($_SERVER ['REQUEST_METHOD']=='post')
+{
+    if (isset($_POST['nomor_resi'])) {
+        $nomor_resi = $_POST['nomor_resi']; 
     
-    $query = "
-        SELECT Distinct r.nomor_resi, 
-               p.nama_pelanggan, 
-               r.nama_penerima,
-
-               CONCAT('Jl. ', alamat_jalan_penerima, ', ', nomor_rumah_penerima, ', ', alamat_kecamatan_penerima, ', ', alamat_kota_penerima) AS alamat_lengkap, 
-               t.tanggal_jam_pengiriman, 
-               pp.posisi_terakhir 
-        FROM resi r 
-        JOIN pelanggan p ON p.id_pelanggan = r.id_pelanggan 
-        JOIN transit t ON r.nomor_resi = t.nomor_resi 
-        JOIN posisi_paket pp ON t.id_posisi_terakhir_paket = pp.id_posisi_terakhir_paket 
-        WHERE r.nomor_resi = ? 
-        ORDER BY t.tanggal_jam_pengiriman DESC
-    ";
-
+        
+        $query = "
+            SELECT Distinct r.nomor_resi, 
+                   p.nama_pelanggan, 
+                   r.nama_penerima,
     
-    $stmt = $conn2->prepare($query);
-    if (!$stmt) {
-        die("Kesalahan dalam persiapan statement: " . $conn->error);
-    }
-
+                   CONCAT('Jl. ', alamat_jalan_penerima, ', ', nomor_rumah_penerima, ', ', alamat_kecamatan_penerima, ', ', alamat_kota_penerima) AS alamat_lengkap, 
+                   t.tanggal_jam_pengiriman, 
+                   pp.posisi_terakhir 
+            FROM resi r 
+            JOIN pelanggan p ON p.id_pelanggan = r.id_pelanggan 
+            JOIN transit t ON r.nomor_resi = t.nomor_resi 
+            JOIN posisi_paket pp ON t.id_posisi_terakhir_paket = pp.id_posisi_terakhir_paket 
+            WHERE r.nomor_resi = ? 
+            ORDER BY t.tanggal_jam_pengiriman DESC
+        ";
     
-    $stmt->bind_param("s", $nomor_resi);
-
-    $stmt->execute();
-
-    $row=null;
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $trackingData[] = [
-                'status_date' => $row['tanggal_jam_pengiriman'],
-                'status_description' => $row['posisi_terakhir'],
-               
-            ];
+        
+        $stmt = $conn2->prepare($query);
+        if (!$stmt) {
+            die("Kesalahan dalam persiapan statement: " . $conn->error);
         }
-        $result->data_seek(0);
+    
         
-        $row=$result->fetch_assoc();
+        $stmt->bind_param("s", $nomor_resi);
+    
+        $stmt->execute();
+    
+        $row=null;
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $trackingData[] = [
+                    'status_date' => $row['tanggal_jam_pengiriman'],
+                    'status_description' => $row['posisi_terakhir'],
+                   
+                ];
+            }
+            $result->data_seek(0);
+            
+            $row=$result->fetch_assoc();
+           
+            
+        } else {
+            echo "Tidak ada data ditemukan untuk nomor resi tersebut.";
+        }
        
-        
-    } else {
-        echo "Tidak ada data ditemukan untuk nomor resi tersebut.";
+    
+        // Tutup statement
+    
+    } 
+    else {
+        echo "Nomor resi tidak diberikan.";
     }
-   
+    
+    
 
-    // Tutup statement
-
-} 
-else {
-    echo "Nomor resi tidak diberikan.";
 }
-
 
 
 ?>
@@ -113,21 +117,41 @@ else {
         <div class="modal-content">
             <span class="close-btn">&larr; Back</span>
             <div class="resi-info">
-                <p>Nomor Resi : <span><?php echo $row['nomor_resi'];?></span></p>
-                <p>Nama Pengirim : <span><?php echo $row['nama_pelanggan'];?></span></span></p>
-                <p>Nama Penerima : <span><?php echo $row['nama_penerima'];?></span></p>
-                <p>Alamat Penerima : <span><?php echo $row['alamat_lengkap'];?></span></p>
+                <p>Nomor Resi : <span><?php if(isset($row['nomor_resi']))
+                {
+                    echo $row['nomor_resi'];
+                } ?></span></p>
+                <p>Nama Pengirim : <span><?php if(isset($row['nama_pelanggan']))
+                {
+                    echo $row['nama_pelanggan'];
+                } ?></span></span></p>
+                <p>Nama Penerima : <span><?php if(isset($row['nama_penerima']))
+                {
+                    echo $row['nama_penerima'];
+                } ?></span></p>
+                <p>Alamat Penerima : <span><?php if(isset($row['alamat_penerima']))
+                {
+                    echo $row['alamat_lengkap'];
+                } ?></span></p>
             </div>
             <hr>
             <div class="tracking-status">
-    <?php foreach ($trackingData as $trackingItem): ?>
+    <?php if(isset($trackingData))foreach ($trackingData as $trackingItem):
+      ?>
         <div class="status-item">
             <div class="status-date">
-                <?php echo htmlspecialchars($trackingItem['status_date']); ?>
+                <?php if(isset($trackingItem['status_date'])) 
+                {
+                    echo htmlspecialchars($trackingItem['status_date']);
+
+                }  ?>
             </div>
             <div class="status-info">
                 <div class="status-icon"></div>
-                <p><?php echo htmlspecialchars($trackingItem['status_description']); ?></p>
+                <p><?php if(isset($trackingItem['status_description'])){
+                    echo htmlspecialchars($trackingItem['status_description']);
+
+                }  ?></p>
             </div>
         </div>
     <?php endforeach; ?>
@@ -173,26 +197,26 @@ else {
     </footer>
 
     <script>
-        // Get the modal element
+        
         const modal = document.getElementById("trackingModal");
     
-        // Get the "Cek Resi" button
+        
         const trackButton = document.querySelector(".track-btn");
     
-        // Get the close button inside the modal
+        
         const closeBtn = document.querySelector(".close-btn");
     
-        // Show the modal when the "Cek Resi" button is clicked
+        
         trackButton.onclick = function () {
             modal.style.display = "block";
         };
     
-        // Hide the modal when the close button is clicked
+        
         closeBtn.onclick = function () {
             modal.style.display = "none";
         };
     
-        // Hide the modal when clicking outside the modal content
+        
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
