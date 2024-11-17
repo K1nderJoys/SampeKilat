@@ -9,10 +9,7 @@
 <body>
   <div class="form-container">
     <h2>Form Pendaftaran Pelanggan</h2>
-    <form action="submitPelanggan.php" method="post">
-      <label for="id_pelanggan">ID Pelanggan</label>
-      <input type="text" id="id_pelanggan" name="id_pelanggan" placeholder="Contoh: PE-1234567" required pattern="^PE-[0-9]{7}$">
-
+    <form action="../../controller/login/submitPelanggan.php" method="post">
       <label for="nama_pelanggan">Nama Pelanggan</label>
       <input type="text" id="nama_pelanggan" name="nama_pelanggan" maxlength="40" required>
 

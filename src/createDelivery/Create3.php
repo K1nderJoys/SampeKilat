@@ -1,3 +1,7 @@
+<?php
+require '../../controller/login/logincontroller.php';
+$username=$_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
       <div class="profile-picture">
         <img src="../../assets/homepagestaff/image/UserIcon.png" alt="Profile Picture">
       </div>
-      <p class="username">UserName</p>
+      <p class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
     </div>
     <button class="logout-button">
       <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="Logout Icon">
@@ -23,18 +27,18 @@
   <div class="content">
     <div class="form-container">
       <h2>INPUT PENGIRIMAN</h2>
-      <form onsubmit="showSuccessPopup(event)">
+      <form action="../../controller/login/createcontroller2.php" onsubmit="showSuccessPopup(event)" method="post">
         <label for="resi">Resi</label>
-        <input type="text" id="resi" placeholder="Masukkan Resi" required>
+        <input type="text" id="resi" name="resi1" placeholder="Masukkan Resi" required>
     
         <label for="status">Status Pengiriman</label>
-        <input type="text" id="status" placeholder="Masukkan Status Pengiriman" required>
+        <input type="text" id="status" name="status1" placeholder="Masukkan Status Pengiriman" required>
     
         <label for="kurir">Kurir</label>
         <input type="text" id="kurir" placeholder="Masukkan Nama Kurir" required>
     
         <label for="layanan">Layanan Pengiriman</label>
-        <input type="text" id="layanan" placeholder="Masukkan Layanan Pengiriman" required>
+        <input type="text" id="layanan" name="layanan1" placeholder="Masukkan Layanan Pengiriman" required>
     
         <div class="form-buttons">
             <button type="submit" class="create-button">Create</button>

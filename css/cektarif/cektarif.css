@@ -379,3 +379,22 @@ th {
     height: auto;
 }
 
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    color: darkgray;
+}
+
+a:active {
+    color: darkgray;
+}
+a:focus {
+    outline: none;
+}
